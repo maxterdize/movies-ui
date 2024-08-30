@@ -21,4 +21,8 @@ export class MoviesHttpService {
       );
   }
 
+  saveMovie(movieId: string | number, changes: Partial<Movie>): Observable<any> {
+    return this.http.put(`/api/movies/${movieId}`, changes);
+  }
+
 }

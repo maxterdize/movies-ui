@@ -17,9 +17,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {HomeComponent} from './home/home.component';
 import {EditMovieDialogComponent} from './edit-movie-dialog/edit-movie-dialog.component';
 import {MoviesResolver} from './movies.resolver';
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {MovieComponent} from './movie/movie.component';
 import {MoviesCardListComponent} from './movies-card-list/movies-card-list.component';
+import {EffectsModule} from "@ngrx/effects";
+import {moviesReducer} from "./reducers/movie.reducers";
+import {StoreModule} from "@ngrx/store";
+import {MoviesEffects} from "./movies.effects";
 
 export const moviesRoutes: Routes = [
   {
@@ -31,13 +35,18 @@ export const moviesRoutes: Routes = [
 
   },
   {
-    path: ':movieUrl',
+    path: ':id',
     component: MovieComponent
   }
 ];
 
 @NgModule({
-  declarations: [HomeComponent,EditMovieDialogComponent, MoviesCardListComponent],
+  declarations: [
+    HomeComponent,
+    EditMovieDialogComponent,
+    MoviesCardListComponent,
+    MovieComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -54,6 +63,12 @@ export const moviesRoutes: Routes = [
     MatSelectModule,
     MatDatepickerModule,
     ReactiveFormsModule,
+    RouterModule.forChild(moviesRoutes),
+    EffectsModule.forFeature([MoviesEffects]),
+    StoreModule.forFeature("movies", moviesReducer)
+  ],
+  exports: [
+
   ]
 })
 export class MoviesModule { }
