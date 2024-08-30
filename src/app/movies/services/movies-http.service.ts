@@ -15,7 +15,7 @@ export class MoviesHttpService {
   }
 
   findAllMovies(): Observable<Movie[]> {
-    return this.http.get<MovieResponse>('/api/movie')
+    return this.http.get<MovieResponse>('/api/movies')
       .pipe(
         map(res => res['payload'])
       );
