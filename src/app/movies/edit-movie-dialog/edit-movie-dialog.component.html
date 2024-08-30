@@ -1,0 +1,93 @@
+
+<h2 mat-dialog-title>{{dialogTitle}}</h2>
+
+<mat-dialog-content>
+
+  <ng-container *ngIf="form">
+
+    <div class="spinner-container" *ngIf="loading$ | async">
+
+      <mat-spinner></mat-spinner>
+
+    </div>
+
+    <ng-container [formGroup]="form">
+
+      <mat-form-field>
+
+        <input matInput
+               placeholder="Movie Plot"
+               formControlName="plot">
+
+      </mat-form-field>
+
+      <ng-container *ngIf="mode == 'create'">
+
+        <mat-form-field>
+
+          <input matInput
+                 placeholder="Movie Id"
+                 formControlName="id">
+
+        </mat-form-field>
+
+        <mat-form-field>
+
+          <input matInput
+                 placeholder="Movie Poster"
+                 formControlName="posterUrl">
+
+        </mat-form-field>
+
+      </ng-container>
+
+      <mat-form-field>
+
+        <mat-select placeholder="Select genre"
+                    formControlName="genre">
+
+          <mat-option value="ACTION">
+            Action</mat-option>
+          <mat-option value="COMEDY">
+            Comedy</mat-option>
+          <mat-option value="HORROR">
+            Horror</mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+
+      <mat-form-field>
+
+        <textarea matInput placeholder="Plot"
+                  formControlName="longPlot">
+
+        </textarea>
+
+      </mat-form-field>
+
+    </ng-container>
+
+
+  </ng-container>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button mat-raised-button (click)="onClose()">
+    Close
+  </button>
+
+  <button mat-raised-button color="primary"
+          [disabled]="!form.valid || (this.loading$ | async)"
+          (click)="onSave()">
+    Save
+  </button>
+
+</mat-dialog-actions>
+
+
+
+

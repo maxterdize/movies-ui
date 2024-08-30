@@ -1,0 +1,15 @@
+
+
+.movie-card {
+    margin: 20px 10px;
+}
+
+.movie-actions {
+    text-align: center;
+
+}
+
+.movie-actions button {
+  margin-right: 10px;
+}
+

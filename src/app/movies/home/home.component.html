@@ -1,0 +1,28 @@
+<div class="movies-panel">
+
+  <div class="header">
+
+    <h2 class="title">All Movies</h2>
+
+    <button mat-mini-fab>
+      <mat-icon class="add-movie-btn" (click)="onAddMovie()">add</mat-icon>
+    </button>
+
+  </div>
+
+  <mat-tab-group>
+
+    <mat-tab label="Beginners">
+
+      <movies-card-list (moviesChanged)="reload()"
+        [movies]="movies$ | async">
+
+      </movies-card-list>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+</div>
+
