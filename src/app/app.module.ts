@@ -14,13 +14,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
-import {provideHttpClient} from '@angular/common/http';
+import {HttpClientModule, provideHttpClient} from '@angular/common/http';
 import { MovieComponent } from './movies/movie/movie.component';
 import {AuthModule} from './auth/auth.module';
 import {HomeComponent} from './movies/home/home.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './auth/auth.guard';
+import {MoviesHttpService} from "./movies/services/movies-http.service";
 
 const routes: Routes = [
   {
@@ -36,13 +37,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MovieComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
@@ -68,10 +69,6 @@ const routes: Routes = [
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([])
-  ],
-  providers: [
-    provideAnimationsAsync(),
-    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })

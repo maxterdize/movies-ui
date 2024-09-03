@@ -24,6 +24,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {moviesReducer} from "./reducers/movie.reducers";
 import {StoreModule} from "@ngrx/store";
 import {MoviesEffects} from "./movies.effects";
+import {MoviesHttpService} from "./services/movies-http.service";
 
 export const moviesRoutes: Routes = [
   {
@@ -33,10 +34,6 @@ export const moviesRoutes: Routes = [
       movies: MoviesResolver
     }
 
-  },
-  {
-    path: ':id',
-    component: MovieComponent
   }
 ];
 
@@ -67,8 +64,9 @@ export const moviesRoutes: Routes = [
     EffectsModule.forFeature([MoviesEffects]),
     StoreModule.forFeature("movies", moviesReducer)
   ],
-  exports: [
-
+  providers: [
+    MoviesHttpService,
+    MoviesResolver
   ]
 })
 export class MoviesModule { }
